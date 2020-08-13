@@ -1,0 +1,218 @@
+{% extends 'basic.html' %}
+{% block title %} Tech-Beauty Parlour | Home {% endblock %}
+
+
+
+{% block body %}
+{% load static %}
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark  py-4">
+
+		<div class="container">
+			<a href="{% url 'userdash' %}" class="navbar-brand text-warning font-weight-bold">Tech-Beauty Parlour</a>
+            <a href="{% url 'userdash' %}"  class="navbar-brand"><img src="{% static 'img/6.png ' %}" class="nav-icon"></a>
+
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsenavbar">
+
+          <span class="navbar-toggler-icon"></span>
+
+			</button>
+			<div class="collapse navbar-collapse text-center" id="collapsenavbar">
+
+
+
+				<ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item font-weight-bold">
+            <a href="{% url 'userdash' %}"  class="nav-link text-warning">Home</a>
+
+          </li>
+
+
+          <li class="nav-item ">
+            <a href="{% url 'services' %}"  class="nav-link text-warning">Services</a>
+
+          </li>
+
+                    <li class="nav-item ">
+            <a href="{% url 'products' %}"  class="nav-link text-warning">Products</a>
+
+          </li>
+
+          <li class="nav-item">
+            <a href="{% url 'about' %}"  class="nav-link text-warning">About</a>
+
+          </li>
+
+          <li class="nav-item">
+            <a href="{% url 'contact' %}"  class="nav-link text-warning">Contact</a>
+
+          </li>
+
+
+
+                   {% if user.is_authenticated %}
+
+
+                    <li class="nav-item ">
+            <a href="/logoutuser/"  class="navbar-brand">
+              <img src="{% static 'img/logout.png ' %}" class="icon">
+            </a>
+          </li>
+
+                    <button class="btn  border-warning text-white" type="submit">
+						{{request.user}}
+					</button>
+
+                    {% else %}
+
+                    <li class="nav-item ">
+						<a href="/logintype/"  class="navbar-brand" >
+							<img src="{% static 'img/av2_06V_1.ico' %}">
+						</a>
+
+					</li>
+
+                    {% endif %}
+
+
+				</ul>
+
+
+			</div>
+		</div>
+
+	</nav>
+
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show" role="alert">
+  <strong>Message:</strong> {{ message }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+
+<div class="container-fluid bgimg">
+
+    <div class="container text-left text-color headerset">
+		<h2 >Welcome To Our Studio!</h2>
+		<h1>Tech-Beauty Parlour</h1>
+
+        <a href="/contact/"><button type="submit" class="button_1">Contact Us</button></a>
+
+	</div>
+
+
+
+</div>
+
+
+<div class="bg-light py-5">
+
+<div class="container ">
+    <h1 class="text-center">Our Services</h1>
+    <hr class="border">
+<div id="demo" class="carousel slide my-3" data-ride="carousel">
+
+ <ul class="carousel-indicators">
+      <li data-target="#demo" data-slide-to="0" class="active"></li>
+
+       {% for i in range %}
+      <li data-target="#demo" data-slide-to="{{i}}" ></li>
+      {% endfor %}
+    </ul>
+    <!--Slideshow starts here -->
+    <div class="container carousel-inner no-padding">
+
+      <div class="carousel-item active">
+
+
+
+        {% for i in services %}
+        <div class="col-xs-3 col-sm-3 col-md-3">
+          <div class="card card-style">
+            <img src='{{i.image}}' class="rounded" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{i.name}}({{i.categories}})</h5>
+              <p class="card-text">৳{{i.price}}</p>
+            </div>
+          </div>
+        </div>
+        {% if forloop.counter|divisibleby:4 and forloop.counter > 0 and not forloop.last %}
+      </div><div class="carousel-item">
+        {% endif %}
+
+        {% endfor %}
+    </div>
+
+
+
+</div>
+</div>
+
+
+
+     <!-- left and right controls for the slide -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+
+</div>
+
+</div>
+
+<div class="tablestyle  py-5" style="background-color: #edf6f7 ;">
+
+ <section class="appoinment-form mx-auto ">
+  <div class="container mb-5 mt-3">
+    <h1 class="text-center text-dark">Book An Appontment</h1>
+    <hr class="w-25 mx-auto">
+
+<div class=" mx-auto ">
+      <form action="/appoinment/" method="post" class="">{% csrf_token %}
+        <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" name="first_name" class="form-control" placeholder="name" id="name">
+  </div>
+          <div class="form-group">
+    <label>Mobile No:</label>
+    <input type="number" name="mobile_number" class="form-control" placeholder="Enter mobile number" id="mbl">
+  </div>
+
+           <div class="form-group">
+    <label for="email">Email address:</label>
+    <input type="email" name="email" class="form-control" placeholder="Enter email" id="email">
+  </div>
+
+
+          <div class="form-group">
+    <label for="name">Address:</label>
+    <input type="text" name="address" class="form-control" placeholder="address" id="address">
+  </div>
+
+          <div class="form-group">
+    <label for="name">Shedule:</label>
+    <input type="text" name="shedule" class="form-control" placeholder="shedule(ex:9 am to 10 am)" id="shedule">
+  </div>
+
+
+
+<div class="row text-center mt-5">
+      <div class="col-lg-12 col-md-12 col-10">
+              <button type="submit" class="button_1">Submit</button>
+     </div>
+</div>
+</form>
+    </div>
+
+</div>
+
+
+</section>
+</div>
+
+{% endblock %}

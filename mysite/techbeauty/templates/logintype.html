@@ -1,0 +1,130 @@
+{% extends 'basic.html' %}
+{% block title %} Tech-Beauty Parlour | Log in Type {% endblock %}
+
+
+
+{% block body %}
+{% load static %}
+
+
+
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark  py-4">
+
+		<div class="container">
+			<a href="{% url 'index' %}" class="navbar-brand text-warning font-weight-bold">Tech-Beauty Parlour</a>
+
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsenavbar">
+
+          <span class="navbar-toggler-icon"></span>
+
+			</button>
+			<div class="collapse navbar-collapse text-center" id="collapsenavbar">
+
+
+
+				<ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item ">
+            <a href="{% url 'index' %}"  class="nav-link text-warning">Home</a>
+
+          </li>
+
+
+          <li class="nav-item ">
+            <a href="#"  class="nav-link text-warning">Services</a>
+
+          </li>
+
+          <li class="nav-item">
+            <a href="{% url 'about' %}"  class="nav-link text-warning">About</a>
+
+          </li>
+
+          <li class="nav-item">
+            <a href="{% url 'contact' %}"  class="nav-link text-warning">Contact</a>
+
+          </li>
+
+
+
+
+
+                    <li class="nav-item ">
+						<a href="{% url 'logintype' %}"  class="navbar-brand" >
+							<img src="{% static 'img/av2_06V_1.ico' %}">
+						</a>
+
+					</li>
+
+
+				</ul>
+
+
+			</div>
+		</div>
+
+	</nav>
+
+<div class="bg-light py-5">
+
+<div class="container text-center my-5">
+
+	<div class="typestyle ">
+	<div class="row ">
+
+		<div class="col-lg-12 col-md-12 col-12  mt-4 px-5">
+			<center>
+
+
+
+
+							<img src="{% static 'img/av2_06V_1.ico' %}">
+
+				<h1>log in</h1>
+				<hr class="w-50 mx-auto">
+
+			</center>
+
+		</div>
+
+
+		</div>
+
+		<div class="row py-5">
+			
+		<div class="col-md-6 col-lg-6 col-10">
+			<center>
+
+						<a href="/loginuser/"  class="navbar-brand" >
+							<button type="submit" class="button_1 ">User</button>
+						</a>
+
+			</center>
+
+		</div>
+
+
+
+			       <div class="col-md-6 col-lg-6 col-10">
+
+					   <center>
+
+						<a href="/loginuser/"  class="navbar-brand" >
+							<button type="submit" class="button_1 ">Admin</button>
+						</a>
+					   </center>
+
+				   </div>
+
+			</center>
+
+		</div>
+	</div>
+	</div>
+
+</div>
+
+
+
+{% endblock %}

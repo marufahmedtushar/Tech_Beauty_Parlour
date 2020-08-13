@@ -1,0 +1,71 @@
+{% extends 'basic2.html' %}
+{% block title %} Tech-Beauty Parlour |  {% endblock %}
+
+
+
+{% block body %}
+{% load static %}
+
+
+
+    <div class="bg-light  py-5">
+
+<div class="container text-center my-5">
+
+<div class="tablestyle">
+
+        <h1 class="text-center text-dark">{{ bill.first_name }}'s Bill</h1>
+                 <hr class="w-25 mx-auto">
+
+                      <table class="table mb-0">
+    <thead>
+      <tr>
+        <th>Name</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+     {% for i in services %}
+
+        <tr>
+
+
+          <td>{{ i.name }}</td>
+            <td>
+
+
+
+                <div class="custom-control custom-switch">
+  <input type="checkbox" name="removepunc" class="custom-control-input" id="customSwitch{i}">
+  <label class="custom-control-label" for="customSwitch{i}"></label>
+        </div>
+
+
+
+            </td>
+
+
+        </tr>
+      {% endfor %}
+
+
+    </tbody>
+  </table>
+
+
+    <form action="/newbill/" method='post'>{% csrf_token %}
+
+        <button type="submit" class="button_2 "></button>
+
+    </form>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+{% endblock %}

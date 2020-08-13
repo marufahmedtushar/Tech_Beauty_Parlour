@@ -1,0 +1,51 @@
+{% extends 'basic.html' %}
+{% block title %} Tech-Beauty Parlour | Log in {% endblock %}
+
+
+
+{% block body %}
+{% load static %}
+
+<div class="text-center mt-3">
+
+  <h4 class="navbar-brand text-warning font-weight-bold ">Tech-Beauty Parlour</h4>
+
+</div>
+
+<section class="login-form mx-auto">
+  <div class="container mb-5 mt-3">
+    <h1 class="text-center ">Log in</h1>
+    <hr class="w-25 mx-auto">
+
+<div class=" mx-auto ">
+      <form action="/loginuser/" method="post" class="">{% csrf_token %}
+        <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" name="username" class="form-control" placeholder="name" id="name">
+  </div>
+
+  <div class="form-group">
+    <label for="pwd">Password:</label>
+    <input type="password" name="password" class="form-control" placeholder="Enter password" id="pwd">
+  </div>
+
+
+
+<div class="row text-center mt-5">
+      <div class="col-lg-12 col-md-12 col-10">
+              <button type="submit" class="button_1">Submit</button>
+     </div>
+</div>
+
+          <h4 class="text-center">Don't have a account? <a href="{% url 'registeruser' %}"
+                    class="text-warning">Sign Up</a></h4>
+</form>
+    </div>
+
+</div>
+
+
+</section>
+
+
+{% endblock %}

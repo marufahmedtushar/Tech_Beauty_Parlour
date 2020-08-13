@@ -1,0 +1,142 @@
+{% extends 'basic.html' %}
+{% block title %} TechShop | Contact {% endblock %}
+
+
+
+{% block body %}
+{% load static %}
+
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark  py-4">
+
+		<div class="container">
+			<a href="{% url 'userdash' %}" class="navbar-brand text-warning font-weight-bold">Tech-Beauty Parlour</a>
+            <a href="{% url 'userdash' %}"  class="navbar-brand"><img src="{% static 'img/6.png ' %}" class="nav-icon"></a>
+
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsenavbar">
+
+          <span class="navbar-toggler-icon"></span>
+
+			</button>
+			<div class="collapse navbar-collapse text-center" id="collapsenavbar">
+
+
+
+				<ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item ">
+            <a href="{% url 'userdash' %}"  class="nav-link text-warning">Home</a>
+
+          </li>
+
+
+          <li class="nav-item ">
+            <a href="{% url 'services' %}"  class="nav-link text-warning">Services</a>
+
+          </li>
+
+                    <li class="nav-item ">
+            <a href="{% url 'products' %}"  class="nav-link text-warning">Products</a>
+
+          </li>
+
+          <li class="nav-item">
+            <a href="{% url 'about' %}"  class="nav-link text-warning">About</a>
+
+          </li>
+
+          <li class="nav-item font-weight-bold">
+            <a href="{% url 'contact' %}"  class="nav-link text-warning">Contact</a>
+
+          </li>
+
+
+
+
+                   {% if user.is_authenticated %}
+
+
+                    <li class="nav-item ">
+            <a href="/logoutuser/"  class="navbar-brand">
+              <img src="{% static 'img/logout.png ' %}" class="icon">
+            </a>
+          </li>
+
+                    <button class="btn  border-warning text-white" type="submit">
+						{{request.user}}
+					</button>
+
+                    {% else %}
+
+                    <li class="nav-item ">
+						<a href="/logintype/"  class="navbar-brand" >
+							<img src="{% static 'img/av2_06V_1.ico' %}">
+						</a>
+
+					</li>
+
+                    {% endif %}
+
+
+				</ul>
+
+
+			</div>
+		</div>
+
+	</nav>
+
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show" role="alert">
+  <strong>Message:</strong> {{ message }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+
+<div class="bg-light py-5">
+
+<section class="contact-form mx-auto mt-5">
+  <div class="container mb-5 mt-3">
+    <h1 class="text-center ">Contact Us</h1>
+    <hr class="w-25 mx-auto">
+
+<div class=" mx-auto ">
+      <form action="/contact/" method="post" class="">{% csrf_token %}
+        <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" name="first_name" class="form-control" placeholder="name" id="name">
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email address:</label>
+    <input type="email" name="email" class="form-control" placeholder="Enter email" id="email">
+  </div>
+
+          <div class="form-group">
+    <label>Textarea:</label>
+    <textarea class="form-control" name="txt" cols="30" rows="4"></textarea>
+  </div>
+
+
+<div class="row text-center mt-5">
+      <div class="col-lg-12 col-md-12 col-10">
+              <button type="submit" class="button_1">Submit</button>
+     </div>
+</div>
+</form>
+    </div>
+
+</div>
+
+
+</section>
+
+</div>
+
+
+
+{% endblock %}
+
+

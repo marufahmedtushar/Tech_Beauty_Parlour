@@ -1,0 +1,100 @@
+{% extends 'basic.html' %}
+{% block title %} Tech-Beauty Parlour | About {% endblock %}
+
+
+
+{% block body %}
+{% load static %}
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark  py-4">
+
+		<div class="container">
+			<a href="{% url 'userdash' %}" class="navbar-brand text-warning font-weight-bold">Tech-Beauty Parlour</a>
+            <a href="{% url 'userdash' %}"  class="navbar-brand"><img src="{% static 'img/6.png ' %}" class="nav-icon"></a>
+
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsenavbar">
+
+          <span class="navbar-toggler-icon"></span>
+
+			</button>
+			<div class="collapse navbar-collapse text-center" id="collapsenavbar">
+
+
+
+				<ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item ">
+            <a href="{% url 'userdash' %}"  class="nav-link text-warning">Home</a>
+
+          </li>
+
+
+          <li class="nav-item ">
+            <a href="{% url 'services' %}"  class="nav-link text-warning">Services</a>
+
+          </li>
+
+                    <li class="nav-item ">
+            <a href="{% url 'products' %}"  class="nav-link text-warning">Products</a>
+
+          </li>
+
+          <li class="nav-item font-weight-bold">
+            <a href="{% url 'about' %}"  class="nav-link text-warning">About</a>
+
+          </li>
+
+          <li class="nav-item">
+            <a href="{% url 'contact' %}"  class="nav-link text-warning">Contact</a>
+
+          </li>
+
+
+
+                   {% if user.is_authenticated %}
+
+
+                    <li class="nav-item ">
+            <a href="/logoutuser/"  class="navbar-brand">
+              <img src="{% static 'img/logout.png ' %}" class="icon">
+            </a>
+          </li>
+
+                    <button class="btn  border-warning text-white" type="submit">
+						{{request.user}}
+					</button>
+
+                    {% else %}
+
+                    <li class="nav-item ">
+						<a href="/logintype/"  class="navbar-brand" >
+							<img src="{% static 'img/av2_06V_1.ico' %}">
+						</a>
+
+					</li>
+
+                    {% endif %}
+
+
+				</ul>
+
+
+			</div>
+		</div>
+
+	</nav>
+
+<div class="container mt-4">
+			<div class="jumbotron">
+			  <h1 class="display-4">Hello, world!</h1>
+			  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+			  <hr class="my-4">
+			  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+			  <p class="lead">
+				<a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+			  </p>
+			</div>
+</div>
+
+
+{% endblock %}
